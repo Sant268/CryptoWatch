@@ -2,10 +2,12 @@ const url = "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=INR&api
   document.getElementById("btc").addEventListener("click", getReqBTC);
  function getReqBTC()
 {
-  let request = new XMLHttpRequest();
-  request.open('GET', url, true);
-  request.responseType = "text";
-var response = XMLHttpRequest.responseText;
-  request.send();
-  document.getElementById("price").innerHTML = response['INR'];
+  var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.getElementById("price").innerHTML = xhttp.response;
+    }
+};
+xhttp.open("GET", url, true);
+xhttp.send();
 }
